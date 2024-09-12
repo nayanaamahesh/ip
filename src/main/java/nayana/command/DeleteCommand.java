@@ -34,9 +34,13 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws NayanaException {
-        Task task = tasks.delete(index); // Adds the task to the task list.
+        assert tasks != null;
+        Task task = tasks.delete(index); // Deletes the task to the task list.
+        assert storage != null;
         storage.writeToFile(tasks.getTasks()); // Updates storage with the new list of tasks.
+        assert ui != null;
         ui.printDeleteTask(task, tasks.getSize()); // Displays a confirmation message with the current task list size.
+        
     }
 
     /**
